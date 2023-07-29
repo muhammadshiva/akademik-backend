@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
-            $table->string('nama');
+            $table->unsignedBigInteger('id_departemen');
+            $table->string('nama', 10);
             $table->timestamps();
+
+            // Definisi foreign key constraints
+            $table->foreign('id_departemen')->references('id')->on('departemen')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('kelas');
     }
 };

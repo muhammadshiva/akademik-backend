@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('departemen', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
+            $table->string('kode', 5);
             $table->string('nama');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('departemen');
     }
 };

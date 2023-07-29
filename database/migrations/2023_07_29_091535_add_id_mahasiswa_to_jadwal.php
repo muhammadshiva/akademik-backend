@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dosen', function (Blueprint $table) {
-            $table->id();
-            $table->string('nip');
-            $table->string('nama');
-            $table->timestamps();
+        Schema::table('jadwal', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_mahasiswa')->after('id_dosen');
+
+            // Definisi foreign key constraint untuk kolom id_mahasiswa
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswa')->onDelete('cascade');
         });
     }
 
@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dosen');
+        Schema::table('jadwal', function (Blueprint $table) {
+            //
+        });
     }
 };

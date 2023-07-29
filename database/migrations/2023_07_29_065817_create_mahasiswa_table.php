@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
+            $table->string('nim')->unique();
             $table->string('nama');
+            $table->date('tgl_lahir');
+            $table->string('alamat');
+            $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('mahasiswa');
     }
 };
